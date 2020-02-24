@@ -1,0 +1,90 @@
+/*css for flask site*/
+body
+{
+    background-color: black; /* The page background will be black */
+    color: white; /* The page text will be white */
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #829CD0;
+}
+
+li {
+  float: left;
+  text-decoration: none;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+a{
+  text-decoration: none;
+}
+
+/* Change the color to dark green on hover */
+li a:hover {
+  background-color: #20368F;
+  text-decoration: none;
+  color: white;
+}
+
+/* Change color to dark green for current page*/
+.active {
+  background-color: #829CD0;
+}
+
+.button {
+  background-color: #829CD0;
+  color: white;
+  text-align: center;
+  border: none;
+  text-decoration: none;
+}
+
+.button:hover{
+  background-color:#20368F;
+}
+
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

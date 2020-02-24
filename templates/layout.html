@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+<head>
+  <title>Flask app</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"> <!-- stylesheet here -->
+
+</head>
+
+
+    <header>
+      <div class="container">
+        <h1 class="logo">Financial Fiends</h1>
+        <strong><nav>
+          <ul class="menu"> <!-- list of pages -->
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('friends') }}">Friends</a></li>
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('settings') }}">Settings</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+
+          </ul>
+        </nav></strong>
+      </div>
+    </header>
+    <div class="container">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    {% block content %}
+    {% endblock %}
+  </div>
+</body>
+</html>

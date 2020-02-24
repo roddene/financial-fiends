@@ -1,0 +1,33 @@
+/*style for dropdown menu*/
+
+#my-dropdown{
+  color:#000
+}
+
+#my-dropdown .Select--multi .Select-value {
+  background-color: #262626;
+  color: #fff;
+}
+
+
+#my-dropdown .VirtualizedSelectFocusedOption {
+  background-color: #ffeedd;
+  color: #FFFFFF
+}
+
+#my-dropdown .VirtualizedSelectOption{
+  background-color: #000000;
+  color: #FFFFFF
+}
+
+
+#my-dropdown .Select-menu-outer {
+ border-bottom-right-radius: 0.25rem;
+ border-bottom-left-radius: 0.25rem;
+ background-color: #222;
+ background-clip: padding-box;
+ border: 1px solid #444;
+ border-top-color: transparent;
+ box-shadow: none;
+ color: #000000;
+}

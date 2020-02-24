@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+   <div class="dashboard">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+    <title>Home</title>
+  </head>
+  <body>
+
+    <div class = "update_stock">
+    <h1>Welcome, {{name}}</h1>
+    <h2> You have ${{money}}</h2>
+
+    <select id = "company_name_input" >
+      {%for row in choices%}
+      <option value = {{row[0]}}>{{row[1]}}({{row[0]}})</option>
+        {% endfor %}
+    </select>
+
+  Amount: <input type="text" id="search_form_input"></input>
+<div id="place_for_amount"></div>
+<form method = "post">
+<button id = "buy" value = "buy" name = "buy">Buy</button>
+<button id = "sell" value = "sell" name = "sell">Sell</button>
+</form>
+<div id = "place_for_owned"></div>
+
+
+    <script>
+    $("#search_form_input").keyup(function(){
+        var text = $(this).val();
+        var comp = $("#company_name_input").val();
+
+        $.ajax({
+          url: "/process",
+          type: "get",
+          data: {company: comp, amount:text},
+          success: function(response) {
+            $("#place_for_amount").html(response);
+          },
+          error: function(xhr) {
+            //Do Something to handle error
+          }
+        });
+    });
+    $("#company_name_input").on('change',function(){
+        var comp = $(this).val();
+        var text = $("#search_form_input").val();
+
+        $.ajax({
+          url: "/process",
+          type: "get",
+          data: {company: comp,amount: text},
+          success: function(response) {
+            $("#place_for_amount").html(response);
+
+          },
+          error: function(xhr) {
+                            alert(xhr.responseText);
+            //Do Something to handle error
+          }
+        });
+    });
+
+//    $(function() {
+  //        $('buy').on('click', function() {
+    //        var comp = $("#company_name_input").val();
+      //      var text = $("#search_form_input").val();
+        //    $.ajax({
+          //    url: "/buyStock",
+            //  data: {jsdata: comp + ' ' + text},
+
+
+      //      });
+        //  });
+      //  });
+      $("button").click(function(e) {
+          var comp = $("#company_name_input").val();
+          var text = $("#search_form_input").val();
+          e.preventDefault();
+          $.ajax({
+              url: "/buyStock",
+              type: "get",
+              data: {
+                  button: $(this).val(), // < note use of 'this' here
+                  company:comp,
+                  amount:text
+              },
+              success: function(response) {
+
+                $("#place_for_owned").html(response);
+
+              },
+              error: function(xhr) {
+                alert(xhr.responseText)
+              }
+          });
+      });
+
+
+    </script>
+
+
+
+
+
+
+    </div>
+
+    <div class = "graph">
+
+
+    <br>
+    <iframe src="http://localhost:8050/dash" style="width: 700px; height: 700px; border: none">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </div>
+  </body>
+</div>
+{% endblock %}
